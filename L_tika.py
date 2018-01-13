@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import rospy
 import time
-import wiringpi as w 
+import pigpio
 
-w.wiringPiSetup()
-w.pinMode(0,1)
+pi = pigpio.pi()
+pi.set_mode(25, pigpio.OUTPUT)
 while 1:
-  w.digitalWrite(0,1)
+  pi.write(25,1)
   time.sleep(1)
-  w.digitalWrite(0,0)
+  pi.write(25,0)
   time.sleep(1)
