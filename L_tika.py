@@ -1,28 +1,12 @@
 #!/usr/bin/env python
-import roslib
 import rospy
 import time
-import wiringpi
-import subprocess
+import wiringpi as w 
 
-#main
-if __name__ == '__main__':
-    ### init io port ###
-    subprocess.check_call('gpio export 25 out',shell=True)
-    #subprocess.check_call('gpio export 8 out',shell=True)
-    ###
-    rospy.init_node('ledflash')
-
-    io = wiringpi.GPIO(wiringpi.GPIO.WPI_MODE_SYS)
-    io.pinMode(25,io.OUTPUT)  # Setup pin 11
-    #io.pinMode(8,io.OUTPUT)  # Setup pin 8 
-
-    while not rospy.is_shutdown():
-        io.digitalWrite(25,1)
-        #io.digitalWrite(8,0)
-        time.sleep(1)
-        io.digitalWrite(25,0)
-        #io.digitalWrite(8,1)
-        time.sleep(1)
-
-    print('\rStopped')
+w.wiringPiSetup()
+w.pinMode(0,1)
+while 1:
+  w.digitalWrite(0,1)
+  time.sleep(1)
+  w.digitalWrite(0,0)
+  time.sleep(1)
