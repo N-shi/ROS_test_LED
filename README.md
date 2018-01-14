@@ -1,7 +1,6 @@
 # ROS_test_LED
-ROSでLチカ
+LEDを点滅させるノードです
 
-実行手順
-$ sudo pigpiod
-$ roscore &
-$ rosrun L_tika.py
+pin25を操作しLEDを点滅させます
+
+gpioの操作にはpigpioを使用しています
